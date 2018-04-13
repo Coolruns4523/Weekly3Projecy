@@ -10,28 +10,33 @@ public class Main {
         //Declaring all variables
         Scanner keyboard = new Scanner(System.in);
         AddBook book = new AddBook();
+        Borrowed check = new Borrowed();
         List list;
         Inventory inventory;
         Borrowed borrowed;
         Available available;
+
 
         String addbookAnswer = " ";
         String listAnswer = " ";
         String borrowedAnswer = " ";
 
 
+
         boolean addBookDone = false;
         boolean listDone = false;
-        boolean borrowedDone = false;
+        boolean borrowedDone = true;
 
         boolean stop = false;
 
         int option;
+        int choice;
 
         ArrayList<Inventory> allInventory = new ArrayList<>();
         ArrayList<List> lists = new ArrayList<>();
         ArrayList<AddBook> addBooks = new ArrayList<>();
         ArrayList<Borrowed>borroweds= new ArrayList<>();
+
 
 
         //MENU
@@ -134,6 +139,7 @@ public class Main {
 
 
         } else if (option == 3) {
+
                 do{
 
                     //Set Inventory
@@ -156,24 +162,81 @@ public class Main {
                         }
                     }
 
-                    System.out.println("Do you want to make another selection?");
-                    listAnswer = keyboard.nextLine();
+                    System.out.println();
+                    System.out.println("Would you like to checkout a book? Type Yes or no");
+
+                    if (keyboard.nextLine().equalsIgnoreCase("Yes"))
+                    {
 
 
-                    if (listAnswer.equalsIgnoreCase("Yes") || listAnswer.equalsIgnoreCase("yes"))
-                        borrowedDone = true;
+                    }
 
-                    else borrowedDone = false;
 
+                    System.out.println("1.How to learn 101:");
+                    System.out.println("2.How to be Black 202:");
+                    System.out.println("3.Embrace Happiness:");
+
+                    System.out.println("Enter your choice here: ");
+                    choice = keyboard.nextInt();
+                    keyboard.nextLine();
+
+
+                    if (choice == 1) {
+
+                        System.out.println("Your choice is: How to learn 101 ");
+                        Library.is(howToLearn101);
+
+                        borroweds.add(Library);
+
+                        System.out.println("Would you like to checkout another book?");
+                        borrowedAnswer = keyboard.nextLine();
+                        if (borrowedAnswer.equalsIgnoreCase("no"))
+                            borrowedDone = true;
+                        else borrowedDone = false;
+
+                    }else if (choice == 2)
+                    {
+                        System.out.println("Your choice is: How to be black 202 ");
+                        Library.is(howToLearn101);
+
+                        borroweds.add(Library);
+
+                        System.out.println("Would you like to checkout another book?");
+                        borrowedAnswer = keyboard.nextLine();
+                        if (borrowedAnswer.equalsIgnoreCase("no"))
+                            borrowedDone = true;
+                        else borrowedDone = false;
+
+                    }else if (choice == 3)
+                    {
+                        System.out.println("Your choice is: Embrace Happiness ");
+                        Library.is(embraceHappiness);
+
+                        borroweds.add(Library);
+
+                        System.out.println("Would you like to checkout another book?");
+                        borrowedAnswer = keyboard.nextLine();
+                        if (borrowedAnswer.equalsIgnoreCase("yes"))
+                            borrowedDone = true;
+                        else borrowedDone = false;
+                    }while(!borrowedDone);
+
+                    for (Borrowed eachBorrowed : borroweds)
+                    {
+                        System.out.println(eachBorrowed.getInStock()+" "+"checked books: ");
+                        for (Available eachAvailable : eachBorrowed.getAvailables()){
+                            System.out.println(" "+eachAvailable.getBookName());
+                        }
+                    }
 
 
                 } while (!borrowedDone);
 
-
             }
 
-
         } while (!stop);
+
+        System.out.println("Good bye");
     }
 }
 
