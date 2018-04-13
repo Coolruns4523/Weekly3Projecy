@@ -10,7 +10,6 @@ public class Main {
         //Declaring all variables
         Scanner keyboard = new Scanner(System.in);
         AddBook book = new AddBook();
-        Borrowed check = new Borrowed();
         List list;
         Inventory inventory;
         Borrowed borrowed;
@@ -190,11 +189,12 @@ public class Main {
 
                         System.out.println("Would you like to checkout another book?");
                         borrowedAnswer = keyboard.nextLine();
-                        if (borrowedAnswer.equalsIgnoreCase("no"))
+                        if (borrowedAnswer.equalsIgnoreCase("No"))
                             borrowedDone = true;
-                        else borrowedDone = false;
+
 
                     }else if (choice == 2)
+
                     {
                         System.out.println("Your choice is: How to be black 202 ");
                         Library.is(howToLearn101);
@@ -207,8 +207,7 @@ public class Main {
                             borrowedDone = true;
                         else borrowedDone = false;
 
-                    }else if (choice == 3)
-                    {
+                    }else if (choice == 3) {
                         System.out.println("Your choice is: Embrace Happiness ");
                         Library.is(embraceHappiness);
 
@@ -216,19 +215,19 @@ public class Main {
 
                         System.out.println("Would you like to checkout another book?");
                         borrowedAnswer = keyboard.nextLine();
-                        if (borrowedAnswer.equalsIgnoreCase("yes"))
+                        if (borrowedAnswer.equalsIgnoreCase("no"))
                             borrowedDone = true;
-                        else borrowedDone = false;
-                    }while(!borrowedDone);
 
-                    for (Borrowed eachBorrowed : borroweds)
+                    }
+
+                /*    for (Borrowed eachBorrowed : borroweds)
                     {
                         System.out.println(eachBorrowed.getInStock()+" "+"checked books: ");
                         for (Available eachAvailable : eachBorrowed.getAvailables()){
                             System.out.println(" "+eachAvailable.getBookName());
                         }
                     }
-
+*/
 
                 } while (!borrowedDone);
 
@@ -236,7 +235,11 @@ public class Main {
 
         } while (!stop);
 
-        System.out.println("Good bye");
+        {
+            System.out.println("Good bye");
+        }
+
+
     }
 }
 
